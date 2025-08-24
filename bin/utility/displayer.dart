@@ -23,7 +23,7 @@ class Displayer {
   // BOOK
   final int colBookCode = 10;
   final int colBookTitle = 30;
-  final int colBookAuthor = 15;
+  final int colBookAuthor = 19;
   final int colBookPublisher = 25;
   final int colBookPrice = 5;
   // NOVEL
@@ -35,9 +35,9 @@ class Displayer {
   final int colComicVolSeries = 5;
 
   // SEMUA BOOK
-  void displayAllBook(List<Book> books) {    
-    print("\nSemua Book:");
-    consoleUtility.printDividen(char: '=');
+  void displayAllBook(List<Book> books, String title, bool isNovel, bool isComic) {    
+    consoleUtility.printTitle(char: '=', title: title);
+    consoleUtility.printDividen(char: '-');
     print(
       '${"Book Code".padRight(colBookCode)}'
       '| ${"Title".padRight(colBookTitle)}'
@@ -45,21 +45,33 @@ class Displayer {
       '| ${"Publisher".padRight(colBookPublisher)}'
       '| ${"Price".padRight(colBookPrice)}'
     );
-    consoleUtility.printDividen(char: '=');
+    consoleUtility.printDividen(char: '-');
 
-    for (var book in books) {      
+    for (var book in books) {                  
       if (book is! Novel && book is! Comic) {
         _printRowBook(book);
+      }      
+      
+      if (isNovel) {
+        if (book is Novel) {
+          _printRowBook(book);
+        }
       }
+      
+      if (isComic){
+        if (book is Comic) {
+          _printRowBook(book);
+        }
+      }                
     }
     
     consoleUtility.printDividen(char: '=');
   }
 
   // SEMUA NOVEL
-  void displayAllNovel(List<Book> books){    
-    print("\nSemua Novel:");
-    consoleUtility.printDividen(char: '=');
+  void displayAllNovel(List<Book> books, String title){    
+    consoleUtility.printTitle(char : '=', title: title);
+    consoleUtility.printDividen(char: '-');
     print(
       '${"Novel Code".padRight(colBookCode)}'
       '| ${"Title".padRight(colBookTitle)}'
@@ -68,7 +80,7 @@ class Displayer {
       '| ${"Price".padRight(colBookPrice)}'
       '| ${"Genre".padRight(colNovelGenre)}'
     );
-    consoleUtility.printDividen(char: '=');
+    consoleUtility.printDividen(char: '-');
 
     for (var novel in books) {
       if (novel is Novel) {
@@ -80,9 +92,9 @@ class Displayer {
   }
 
   // SEMUA COMIC
-  void displayAllComic(List<Book> books){
-    print("\nSemua Novel:");
-    consoleUtility.printDividen(char: '=');
+  void displayAllComic(List<Book> books, String title){
+    consoleUtility.printTitle(char: '=', title: title);
+    consoleUtility.printDividen(char: '-');
     print(
       '${"Comic Code".padRight(colBookCode)}'
       '| ${"Title".padRight(colBookTitle)}'
@@ -90,7 +102,7 @@ class Displayer {
       '| ${"Publisher".padRight(colComicPublisher)}'
       '| ${"Price".padRight(colBookPrice)}'
     );
-    consoleUtility.printDividen(char: '=');
+    consoleUtility.printDividen(char: '-');
 
     for (var comic in books) {
       if (comic is Comic) {
@@ -102,9 +114,9 @@ class Displayer {
   }
 
   // HANYA SATU BOOK
-  void displayBook(Book book){
-    print("\n Novel Ditemukan:");
-    consoleUtility.printDividen(char: '=');
+  void displayBook(Book book, String title){
+    consoleUtility.printTitle(char: '=', title: title);
+    consoleUtility.printDividen(char: '-');
     print(
       '${"Novel Code".padRight(colBookCode)}'
       '| ${"Title".padRight(colBookTitle)}'
@@ -113,15 +125,15 @@ class Displayer {
       '| ${"Price".padRight(colBookPrice)}'
       '| ${"Genre".padRight(colNovelGenre)}'
     );
-    consoleUtility.printDividen(char: '=');
+    consoleUtility.printDividen(char: '-');
     _printRowBook(book);
     consoleUtility.printDividen(char: '=');
   }
 
   // HANYA SATU NOVEL
-  void displayNovel(Novel novel){
-    print("\nNovel Ditemukan:");
-    consoleUtility.printDividen(char: '=');
+  void displayNovel(Novel novel, String title){
+    consoleUtility.printTitle(char: '=', title: title);
+    consoleUtility.printDividen(char: '-');
     print(
       '${"Novel Code".padRight(colBookCode)}'
       '| ${"Title".padRight(colBookTitle)}'
@@ -130,15 +142,15 @@ class Displayer {
       '| ${"Price".padRight(colBookPrice)}'
       '| ${"Genre".padRight(colNovelGenre)}'
     );
-    consoleUtility.printDividen(char: '=');
+    consoleUtility.printDividen(char: '-');
     _printRowNovel(novel);
     consoleUtility.printDividen(char: '=');
   }
 
   // HANYA SATU COMIC
-  void displayComic(Comic comic){
-    print("\nComic Ditemukan:");
-    consoleUtility.printDividen(char: '=');
+  void displayComic(Comic comic, String title){
+    consoleUtility.printTitle(char: '=', title: title);    
+    consoleUtility.printDividen(char: '-');
     print(
       '${"Comic Code".padRight(colBookCode)}'
       '| ${"Title".padRight(colBookTitle)}'
@@ -146,7 +158,7 @@ class Displayer {
       '| ${"Publisher".padRight(colComicPublisher)}'
       '| ${"Price".padRight(colBookPrice)}'      
     );
-    consoleUtility.printDividen(char: '=');
+    consoleUtility.printDividen(char: '-');
     _printRowComic(comic);
     consoleUtility.printDividen(char: '=');
   }

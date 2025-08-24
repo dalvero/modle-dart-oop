@@ -4,6 +4,7 @@ import '../utility/console_utility.dart';
 import '../repository/repo_author.dart';
 import '../utility/displayer.dart';
 import '../repository/repo_book.dart';
+import '../utility/control.dart';
 
 class Runner {  
   Menu mainMenu = Menu();
@@ -11,6 +12,7 @@ class Runner {
   RepoAuthor repoAuthor = RepoAuthor();
   Displayer displayer = Displayer();
   RepoBook repoBook = RepoBook();
+  Control control = Control();
 
   // FUNCTION UNTUK MENJALANKAN PROGRAM
   void run(){    
@@ -86,27 +88,62 @@ class Runner {
           print("Silahkan ulangi!");
           isExit = false;
           break;
-        case 1: // KONDISI BOOK MENU
-          consoleUtility.printTitle(char: '=', title: "Book Menu Searching");          
+        case 1: // DATA BOOK YANG PALING MURAH
+          consoleUtility.clearConsole();
+          displayer.displayBook(control.getCheapestBook(repoBook.listBook), "Book termurah");
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
           break;
-        case 2: // KONDISI AUTHOR MENU
-          consoleUtility.printTitle(char: '=', title: "Author Menu Searching");          
+        case 2: // DATA BOOK YANG PALING MAHAL
+          consoleUtility.clearConsole();
+          displayer.displayBook(control.getExpensiveBook(repoBook.listBook), "Book termahal");
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
           break;
+        case 3: // DATA BOOK BERDASARKAN RANGE PRICE
+          consoleUtility.clearConsole();
+          displayer.displayAllBook(control.listBookByPrice(repoBook.listBook), "Book termahal", true, true);
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
+          break;
+        case 4: // DATA COMIC BERDASARKAN RATING MANGAKA
+          consoleUtility.clearConsole();
+          displayer.displayAllComic(control.listComicByRateMangaka(repoBook.listBook), "Comic Berdasarkan Rating Mangaka");
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
+          break;
+        case 5: // DATA BOOK BERDASARKAN PUBLISHER COUNTRY
+          consoleUtility.clearConsole();
+          displayer.displayAllBook(control.listBookByPublisherCountry(repoBook.listBook), "Book Berdasarkan Publishe's Country", true, true);
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
+          break;
+        case 6: // DATA BOOK BERDASARKAN AUTHOR COUNTRY
+          consoleUtility.clearConsole();
+          displayer.displayAllBook(control.listBookByAuthorCountry(repoBook.listBook), "Book Berdasarkan Publishe's Country", true, true);
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
+          break;
+        case 7: // DATA COMIC PALING MURAH
+          consoleUtility.clearConsole();
+          displayer.displayComic(control.getExpensiveComic(repoBook.listBook), "Comic termurah");
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
         case 8: // TAMPILKAN SEMUA BUKU 
           consoleUtility.clearConsole();
-          displayer.displayAllBook(repoBook.listBook);
+          displayer.displayAllBook(repoBook.listBook, "List Book", false, false);
           stdout.write("Tekan sembarang untuk kembali! ");
           stdin.readLineSync();
           break;
         case 9: // TAMPILKAN SEMUA NOVEL 
           consoleUtility.clearConsole();
-          displayer.displayAllNovel(repoBook.listBook);
+          displayer.displayAllNovel(repoBook.listBook, "List Novel");
           stdout.write("Tekan sembarang untuk kembali! ");
           stdin.readLineSync();
           break;
         case 10: // TAMPILKAN SEMUA COMIC 
           consoleUtility.clearConsole();
-          displayer.displayAllComic(repoBook.listBook);
+          displayer.displayAllComic(repoBook.listBook, "List Comic");
           stdout.write("Tekan sembarang untuk kembali! ");
           stdin.readLineSync();
           break;
