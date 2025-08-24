@@ -194,6 +194,18 @@ class Runner {
           stdout.write("Tekan sembarang untuk kembali! ");
           stdin.readLineSync();
           break;
+        case 4: // KONDISI AUTHOR BERDASARKAN RANGE UMUR
+          consoleUtility.clearConsole();
+          displayer.displayAllAuthors(control.listAuthorByAge(repoAuthor.listAuthor));
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
+          break;
+        case 5: // KONDISI AUTHOR BERDASARKAN COUNTRY
+          consoleUtility.clearConsole();
+          displayer.displayAllAuthors(control.listAuthorByCountry(repoAuthor.listAuthor));
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
+          break;
         case 0: // KONDISI EXIT          
           isExit = true;
           break;

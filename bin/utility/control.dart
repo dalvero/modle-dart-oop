@@ -3,6 +3,7 @@ import '../parents/book.dart';
 import '../utility/console_utility.dart';
 import '../childs/comic.dart';
 import '../childs/mangaka.dart';
+import '../parents/author.dart';
 
 // BERISI FUNCTION UNTUK CONTROL APLIKASI
 class Control{
@@ -141,5 +142,44 @@ class Control{
       return []; // MERETURN LIST KOSONG
     }
     return listBookByAuthorCountry;    
+  }
+
+  // AUTHOR CONTROL //
+  // MENCARI AUTHOR BERDASARKAN RANGE UMUR
+  List<Author> listAuthorByAge(List<Author> listAllAuthor){
+    List<Author> listAuthorByAge = [];
+    consoleUtility.printTitle(title: "Pencarian Author Berdasarkan Range Umur");
+    stdout.write("Masukan nilai min\t: ");
+    double? min = double.tryParse(stdin.readLineSync() ?? '');
+    stdout.write("Masukan nilai max\t: ");
+    double? max = double.tryParse(stdin.readLineSync() ?? '');
+
+    if (min != null && max != null && min <= max && min >= 0) {
+      for (var author in listAllAuthor) {
+        if (author.age >= min && author.age <= max) {
+          listAuthorByAge.add(author);
+        }
+      }
+    } else {
+      print("Umur diluar jangkauan, silahkan ulangi");
+      return [];
+    }
+    return listAuthorByAge;
+  }
+
+  // MENCARI AUTHOR BERDASARKAN COUNTRY
+  List<Author> listAuthorByCountry(List<Author> listAllAuthor){
+    List<Author> listAuthorByCountry =[];
+    consoleUtility.printTitle(title: "Pencarian Author Berdasarkan Country");        
+    stdout.write("Masukan country\t: ");
+    String? country = stdin.readLineSync()?.trim() ?? '';
+    consoleUtility.clearConsole();
+
+    for (var author in listAllAuthor) {
+      if (author.country.toLowerCase() == country.toLowerCase()) {
+        listAuthorByCountry.add(author);
+      }
+    }
+    return listAuthorByCountry;
   }
 }
