@@ -5,6 +5,7 @@ import '../repository/repo_author.dart';
 import '../utility/displayer.dart';
 import '../repository/repo_book.dart';
 import '../utility/control.dart';
+import '../repository/repo_publisher.dart';
 
 class Runner {  
   Menu mainMenu = Menu();
@@ -13,6 +14,7 @@ class Runner {
   Displayer displayer = Displayer();
   RepoBook repoBook = RepoBook();
   Control control = Control();
+  RepoPublisher repoPublisher = RepoPublisher();
 
   // FUNCTION UNTUK MENJALANKAN PROGRAM
   void run(){    
@@ -235,15 +237,18 @@ class Runner {
           print("Silahkan ulangi!");
           isExit = false;
           break;
-        case 1: // KONDISI BOOK MENU
-          consoleUtility.printTitle(char: '=', title: "Book Menu Searching");          
-          break;
-        case 2: // KONDISI AUTHOR MENU
-          consoleUtility.printTitle(char: '=', title: "Author Menu Searching");          
-          break;
-        case 3: // KONDISI PUBLISHER MENU 
-          consoleUtility.printTitle(char: '=', title: "Author Menu Searching");          
-          break;
+        case 1: // KONDISI PRODUCTION COST PALING MAHAL
+          consoleUtility.clearConsole();
+          displayer.displayPublisher(control.getExpensivePublisher(repoPublisher.listPublisher));
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
+          break;          
+        case 2: // KONDISI PRODUCTION COST PALING MURAH
+          consoleUtility.clearConsole();
+          displayer.displayPublisher(control.getCheapestPublisher(repoPublisher.listPublisher));
+          stdout.write("Tekan sembarang untuk kembali! ");
+          stdin.readLineSync();
+          break;                       
         case 0: // KONDISI EXIT          
           isExit = true;
           break;

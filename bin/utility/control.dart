@@ -4,6 +4,7 @@ import '../utility/console_utility.dart';
 import '../childs/comic.dart';
 import '../childs/mangaka.dart';
 import '../parents/author.dart';
+import '../parents/publisher.dart';
 
 // BERISI FUNCTION UNTUK CONTROL APLIKASI
 class Control{
@@ -181,5 +182,18 @@ class Control{
       }
     }
     return listAuthorByCountry;
+  }
+
+  // PUBLISHER CONTROL //
+  // MENCARI PUBLISHER BERDASARKAN PRODUCTION COST PALING MAHAL
+  Publisher getExpensivePublisher(List<Publisher> listAllPublisher){
+    listAllPublisher.sort((a, b) => a.productionCost.compareTo(b.productionCost));
+    return listAllPublisher.last;
+  }
+
+  // MENCARI PUBLISHER BERDASARKAN PRODUCTION COST PALING MURAH
+  Publisher getCheapestPublisher(List<Publisher> listAllPublisher){
+    listAllPublisher.sort((a, b) => a.productionCost.compareTo(b.productionCost));
+    return listAllPublisher.first;
   }
 }

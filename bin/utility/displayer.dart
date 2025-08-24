@@ -6,6 +6,7 @@ import '../childs/comic.dart';
 import '../utility/console_utility.dart';
 import '../parents/book.dart';
 import '../childs/novel.dart';
+import '../parents/publisher.dart';
 
 class Displayer {   
   ConsoleUtility consoleUtility = ConsoleUtility();
@@ -33,6 +34,11 @@ class Displayer {
   final int colComicMangaka = 19;
   final int colComicPublisher = 22;
   final int colComicVolSeries = 5;
+
+  // PUBLISHER ENV
+  final int colPublisherName = 25;  
+  final int colPublisherCountry = 12;
+  final int colPublisherProductionCost = 12;
 
   // SEMUA BOOK
   void displayAllBook(List<Book> books, String title, bool isNovel, bool isComic) {    
@@ -262,6 +268,37 @@ class Displayer {
     consoleUtility.printDividen(char: '=');
   }
 
+  // SEMUA PUBLISHER
+  void displayAllPublisher(List<Publisher> publishers){
+    print('\nSemua Publisher:');
+    consoleUtility.printDividen(char: '=');
+    print(
+      '${"Nama Publisher".padRight(colPublisherName)}'      
+      '| ${"Negara".padRight(colPublisherCountry)}'      
+      '| ${"Production Cost".padRight(colPublisherProductionCost)}'
+    );
+    consoleUtility.printDividen(char: '=');
+
+    for (var publisher in publishers) {      
+      _printRowPublisher(publisher);
+    }
+    consoleUtility.printDividen(char: '=');
+  }
+
+  // HANYA SATU PUBLISHER
+  void displayPublisher(Publisher publisher){
+    consoleUtility.printTitle(title: "Production Cost Publisher Termahal");
+    consoleUtility.printDividen(char: '=');
+    print(
+      '${"Nama Publisher".padRight(colPublisherName)}'      
+      '| ${"Negara".padRight(colPublisherCountry)}'      
+      '| ${"Production Cost".padRight(colPublisherProductionCost)}'
+    );
+    consoleUtility.printDividen(char: '=');    
+    _printRowPublisher(publisher);    
+    consoleUtility.printDividen(char: '=');
+  }
+
   // ROW AUTHOR
   void _printRow(Author author, String tipe) {
     stdout.write(
@@ -295,4 +332,14 @@ class Displayer {
       '| ${mangaka.rating.toString().padRight(colRating)}\n'
     );
   }
+
+  // ROW PUBLISHER
+  void _printRowPublisher(Publisher publisher){
+    stdout.write(
+      '${publisher.publisherName.padRight(colPublisherName)}'
+      '| ${publisher.country.padRight(colPublisherCountry)}'      
+      '| ${publisher.productionCost.toString().padRight(colPublisherProductionCost)}\n'
+    );
+  }
+
 }
